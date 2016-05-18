@@ -27,23 +27,27 @@ spl_autoload_register('chargerClasses');
 //creation de l'objet de securité (contient toute la securité)
 $secure = New Security();
 
-// securité sur les variables POST et GET
-if($_POST){
-    $secure->post($_POST);
-}
-
-if($_GET){
-    $secure->get($_GET);
-}
-//init de destination
 $destination_default = 'acceuil';
+// securité sur les variables POST et GET
+$destination = filter_input(INPUT_GET, 'destination', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+//init de destination
+
 
 
 $destination = empty($destination)? $destination_default:$destination;
 
-spl_autoload_register('chargerControllers');
-spl_autoload_register('chargerModels');
+//si il y a un model
+if(!empty($action)) {
+    require MODEL.DS.$action.'.php';
+}
 
+// Page n'existe pas
+if(!file_exists(VIEWS.DS.$destination.'.php')) {
 
-	require VIEWS.DS.$destination.'.php';
+    $destination = '404';
+
+}
+require VIEWS.DS.'dispatch.php';
+	
 
