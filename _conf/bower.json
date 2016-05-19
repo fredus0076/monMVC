@@ -1,0 +1,17 @@
+{
+  "name": "mvc",
+  "description": "model mvc simple",
+  "main": "index.js",
+  "authors": [
+    "Madranges Frederic"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "node_modules"
+  ],
+  "dependencies": {
+    "bootstrap": "4",
+    "angular": "angular2#^1.5.5"
+  }
+}

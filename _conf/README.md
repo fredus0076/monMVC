@@ -1,0 +1,1 @@
+Si on utilise angular il vaut mieu crée une API
